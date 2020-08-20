@@ -8,7 +8,7 @@ class App extends Component {
   }
 
   callAPI() {
-    fetch("https://forex-journaling-api.herokuapp.com//testAPI")
+    fetch("https://forex-journaling-api.herokuapp.com/testAPI")
         .then(res => res.text())
         .then(res => this.setState({ apiResponse: res }))
         .catch(err => err);
