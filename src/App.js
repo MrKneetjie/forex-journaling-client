@@ -4,28 +4,42 @@ import './App.css';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { apiResponse: "" };
+    this.state = { apiResponse: "",
+                      username: "",
+                      password: ""};
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  
+  handleInputChange(event) {
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
+
+    this.setState({
+      [name]: value
+    });
   }
 
-  callAPI() {
-    fetch("https://forex-journaling-api.herokuapp.com/testAPI")
+
+
+  handleSubmit(event) {
+    fetch("https://forex-journaling-api.herokuapp.com/login/" + this.state[username] + "&" + this.state[password])
         .then(res => res.text())
         .then(res => this.setState({ apiResponse: res }))
         .catch(err => err);
+    event.preventDefault();
   }
 
-  componentWillMount() {
-    this.callAPI();
-  }
-  
   render() {
     return (
       <div className="App">
         <header className="App-header">
           <p className="App-intro">{this.state.apiResponse}</p>
-          <form>
+          <form onSubmit={this.handleSubmit}>
             <label for="username">Username</label>
-            <input type="text" id="username" name="username"></input>
+            <input type="text" id="username" name="username" onChange={this.handleChange}></input>
 
             <label for="password">Password</label>
             <input type="password" id="password" name="password"></input>
