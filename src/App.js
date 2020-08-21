@@ -8,7 +8,7 @@ class App extends Component {
                       username: "",
                       password: ""};
 
-    this.handleChange = this.handleChange.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   
