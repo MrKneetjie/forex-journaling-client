@@ -20,6 +20,8 @@ class App extends Component {
     this.setState({
       [name]: value
     });
+
+    console.log(this.state)
   }
 
 
@@ -39,10 +41,10 @@ class App extends Component {
           <p className="App-intro">{this.state.apiResponse}</p>
           <form onSubmit={this.handleSubmit}>
             <label for="username">Username</label>
-            <input type="text" id="username" name="username" onChange={this.handleChange}></input>
+            <input type="text" id="username" name="username" onChange={this.handleInputChange}></input>
 
             <label for="password">Password</label>
-            <input type="password" id="password" name="password"></input>
+            <input type="password" id="password" name="password" onChange={this.handleInputChange}></input>
 
             <div class="buttons">
               <button type="submit">Log In</button>
