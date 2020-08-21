@@ -8,7 +8,7 @@ class App extends Component {
                       username: "",
                       password: ""};
 
-    this.handleChange = this.handleChange.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   
@@ -20,12 +20,14 @@ class App extends Component {
     this.setState({
       [name]: value
     });
+
+    console.log(this.state)
   }
 
 
 
   handleSubmit(event) {
-    fetch("https://forex-journaling-api.herokuapp.com/login/" + this.state[username] + "&" + this.state[password])
+    fetch("https://forex-journaling-api.herokuapp.com/login/" + this.state.username + "&" + this.state.password)
         .then(res => res.text())
         .then(res => this.setState({ apiResponse: res }))
         .catch(err => err);
@@ -39,10 +41,10 @@ class App extends Component {
           <p className="App-intro">{this.state.apiResponse}</p>
           <form onSubmit={this.handleSubmit}>
             <label for="username">Username</label>
-            <input type="text" id="username" name="username" onChange={this.handleChange}></input>
+            <input type="text" id="username" name="username" onChange={this.handleInputChange}></input>
 
             <label for="password">Password</label>
-            <input type="password" id="password" name="password"></input>
+            <input type="password" id="password" name="password" onChange={this.handleInputChange}></input>
 
             <div class="buttons">
               <button type="submit">Log In</button>
