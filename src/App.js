@@ -25,7 +25,7 @@ class App extends Component {
 
 
   handleSubmit(event) {
-    fetch("https://forex-journaling-api.herokuapp.com/login/" + this.state.username + "&" + this.state.password);
+    fetch("https://forex-journaling-api.herokuapp.com/login/" + this.state.username + "&" + this.state.password)
         .then(res => res.text())
         .then(res => this.setState({ apiResponse: res }))
         .catch(err => err);
