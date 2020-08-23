@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
 
-import { Login } from "./Components/Login/Login.js"
+import { Login } from "./Components/Login.js"
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-  
+class App extends Component {  
   render() {
     return (
       <div className="App">
