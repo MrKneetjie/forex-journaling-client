@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
+import { Redirect  } from "react-router-dom";
+
 import './Login.css';
 
 class Login extends Component {
   constructor(props) {
     super(props);
-    this.state = { apiResponse: "",
-                      username: "",
-                      password: ""};
+    this.state = { 
+      redirect: false,
+      username: "",
+      password: ""
+    };
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -20,23 +24,27 @@ class Login extends Component {
     this.setState({
       [name]: value
     });
-
-    console.log(this.state)
   }
 
 
 
   handleSubmit(event) {
     fetch("https://forex-journaling-api.herokuapp.com/login/" + this.state.username + "&" + this.state.password)
-        .then(res => res.text())
-        .then(res => this.setState({ apiResponse: res }))
+        .then(res => {
+          if (res.status === 200) {
+            this.setState({redirect: true});
+          }
+        })
         .catch(err => err);
     event.preventDefault();
   }
 
   render() {
+    if (this.state.redirect) {
+      return <Redirect push to="/home" />;
+    }
     return (
-      <div>
+      <div className="Login">
         <p className="App-intro">{this.state.apiResponse}</p>
         <form onSubmit={this.handleSubmit}>
         <label for="username">Username</label>
