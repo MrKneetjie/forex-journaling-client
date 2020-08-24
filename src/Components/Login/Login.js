@@ -7,6 +7,7 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = { 
+      validation: "",
       redirect: false,
       username: "",
       password: ""
@@ -33,6 +34,8 @@ class Login extends Component {
         .then(res => {
           if (res.status === 200) {
             this.setState({redirect: true});
+          } else {
+            this.setState({validation: "Wrong username/password"});
           }
         })
         .catch(err => err);
@@ -45,7 +48,8 @@ class Login extends Component {
     }
     return (
       <div className="Login">
-        <p className="App-intro">{this.state.apiResponse}</p>
+        <p><small>{this.state.validation}</small></p>
+
         <form onSubmit={this.handleSubmit}>
         <label for="username">Username</label>
         <input type="text" id="username" name="username" onChange={this.handleInputChange}></input>
