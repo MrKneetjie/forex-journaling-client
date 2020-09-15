@@ -58,6 +58,7 @@ class Home extends Component {
                 <td>1.28800</td>
                 <td>8.7 pips</td>
                 <td>26.8 pips</td>
+                <td>1%</td>
                 <td>3RR</td>
                 <td>+54.09</td>
               </tr>
